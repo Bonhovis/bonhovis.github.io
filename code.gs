@@ -1,5 +1,5 @@
 function doGet(request) {
-  return HtmlService.createTemplateFromFile('Index').evaluate();
+  return HtmlService.createTemplateFromFile('index').evaluate();
 }
 
 /* @Include JavaScript and CSS Files */
