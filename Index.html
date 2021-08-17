@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <?!= include('JavaScript'); ?>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form id="myForm">
+                  <br>
+                  <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/clans/39049601/5119c487ba4aaf8e6b067b5310ac5ed3651eb9d2.png">
+                  <br>
+                  <br>
+                    <p class="h4 mb-4 text-center">Steam Deck availability</p>
+                    <p style="font-size:100%;">The purpose of this form is to collect data regarding Steam Deck reservations to try to build a bigger picture of expected order availability and model by location.<p>
+                    <p style="font-size:100%;">You may view the current availability map via the Google Data Studio link below:</p>
+                    <p style="font-size:100%" class="text-center"><a href="https://datastudio.google.com/u/0/reporting/f1e78ee9-4449-4bf0-b9a2-aa72305b9405/page/m4zXC/edit" target="_blank">Steam Deck availability map</a></p>
+                    <p style="font-size:100%;">The precision of the collected latitude-longitude coordinates has been limited to 3 decimal places to purposefully reduce accuracy (<a href="http://wiki.gis.com/wiki/index.php/Decimal_degrees" target="_blank">to within 111m</a>) and offset your exact location.</p>
+                    <p style="font-size:100%;">The map is set to update approximately every 15 minutes so please refresh later if your submission is not yet showing.</p>
+                    <div class="form-group">
+                        <label for="model">What model have you reserved?</label>
+                        <select class="form-control" id="model" name="model" required>
+                            <option selected disabled hidden style='display: none' value=''></option>
+                            <option value="64GB">64GB</option>
+                            <option value="256GB">256GB</option>
+                            <option value="512GB">512GB</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">What is your expected order availability?</label>
+                        <select class="form-control" id="availability" name="availability" required>
+                            <option selected disabled hidden style='display: none' value=''></option>
+                            <option value="December 2021">December 2021</option>
+                            <option value="Q1 2022">Q1 2022</option>
+                            <option value="Q2 2022">Q2 2022</option>
+                            <option value="Q3 2022">Q3 2022</option>
+                            <option value="Q4 2022">Q4 2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="lat" name="lat">
+                        <input type="hidden" class="form-control" id="long" name="long">
+                    </div>
+
+                    <button name="myButton" type="button" class="btn btn-primary btn-block" onclick="validateLatLong()">Submit</button>
+                     <script>
+                      function validateLatLong() {
+                      let x = document.getElementById("lat").value;
+                      let y = document.getElementById("long").value;
+                      let a = document.getElementById("model").value;
+                      let b = document.getElementById("availability").value;
+                      if (x == 0 && y == 0)
+                        {
+                          alert("Submission failed. Please ensure to allow your location.");
+                        }
+                      else if (a == "" || b == "")
+                        {
+                          alert("Submission failed. Please provide both your model and expected order availability.");
+                        }
+                      else
+                        {
+                          handleFormSubmit(myForm);
+                        }
+                      } 
+                    </script>
+                </form>
+
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

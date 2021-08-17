@@ -1,0 +1,34 @@
+<script>
+    function showPosition() {
+        navigator.geolocation.getCurrentPosition(showMap);
+    }
+
+    function showMap(position) {
+        // Get location data
+        var lat = position.coords.latitude;
+        var geo1 = document.getElementById("lat");
+        geo1.value = lat;
+        var long = position.coords.longitude;
+        var geo2 = document.getElementById("long");
+        geo2.value = long;
+    }
+
+    // Prevent forms from submitting.
+    function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', function(event) {
+                event.preventDefault();
+            });
+        }
+    }
+    window.addEventListener('load', preventFormSubmit);
+    window.addEventListener('load', showPosition);
+
+    function handleFormSubmit(formObject) {
+        google.script.run.processForm(formObject);
+        alert("Thank you for your submission!");
+        window.open("https://datastudio.google.com/u/0/reporting/f1e78ee9-4449-4bf0-b9a2-aa72305b9405/page/m4zXC");
+        myForm.myButton.disabled = true;
+    }
+</script>
